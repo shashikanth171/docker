@@ -80,14 +80,9 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
     # networks:
     #   - zulip-db
-    cap_drop:
-      - ALL
-    cap_add:                    # <- add this block
-      - CHOWN
-      - SETUID
-      - SETGID
-      - DAC_OVERRIDE
-      - FOWNER
+    # cap_drop / cap_add removed — default Docker capabilities already
+    # include CHOWN/DAC_OVERRIDE/FOWNER/SETUID/SETGID, which is exactly
+    # what the entrypoint needs to fix ownership and drop to "postgres"
     security_opt:
       - no-new-privileges:true
     ipc: private
@@ -134,14 +129,9 @@ services:
       MEMCACHED_PASSWORD: ${MEMCACHED_PASSWORD:?memcached password required}
     # networks:
     #   - zulip-db
-    cap_drop:
-      - ALL
-    cap_add:                    # <- add this block
-      - CHOWN
-      - SETUID
-      - SETGID
-      - DAC_OVERRIDE
-      - FOWNER
+    # cap_drop / cap_add removed — default Docker capabilities already
+    # include CHOWN/DAC_OVERRIDE/FOWNER/SETUID/SETGID, which is exactly
+    # what the entrypoint needs to fix ownership and drop to "postgres"
     security_opt:
       - no-new-privileges:true
     ipc: private
@@ -190,14 +180,9 @@ services:
       - ./data/rabbitmq:/var/lib/rabbitmq
     # networks:
     #   - zulip-db
-    cap_drop:
-      - ALL
-    cap_add:                    # <- add this block
-      - CHOWN
-      - SETUID
-      - SETGID
-      - DAC_OVERRIDE
-      - FOWNER
+    # cap_drop / cap_add removed — default Docker capabilities already
+    # include CHOWN/DAC_OVERRIDE/FOWNER/SETUID/SETGID, which is exactly
+    # what the entrypoint needs to fix ownership and drop to "postgres"
     security_opt:
       - no-new-privileges:true
     ipc: private
@@ -240,14 +225,9 @@ services:
       - ./data/redis:/data
     # networks:
     #   - zulip-db
-    cap_drop:
-      - ALL
-    cap_add:                    # <- add this block
-      - CHOWN
-      - SETUID
-      - SETGID
-      - DAC_OVERRIDE
-      - FOWNER
+    # cap_drop / cap_add removed — default Docker capabilities already
+    # include CHOWN/DAC_OVERRIDE/FOWNER/SETUID/SETGID, which is exactly
+    # what the entrypoint needs to fix ownership and drop to "postgres"
     security_opt:
       - no-new-privileges:true
     ipc: private
