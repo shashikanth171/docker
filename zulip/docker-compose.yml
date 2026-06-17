@@ -130,6 +130,12 @@ services:
     #   - zulip-db
     cap_drop:
       - ALL
+    cap_add:                    # <- add this block
+      - CHOWN
+      - SETUID
+      - SETGID
+      - DAC_OVERRIDE
+      - FOWNER
     security_opt:
       - no-new-privileges:true
     ipc: private
