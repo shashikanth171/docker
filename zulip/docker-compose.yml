@@ -78,8 +78,8 @@ services:
       TZ: ${TZ:-Europe/Bratislava}
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
-    networks:
-      - zulip-db
+    # networks:
+    #   - zulip-db
     cap_drop:
       - ALL
     security_opt:
@@ -126,8 +126,8 @@ services:
       SASL_CONF_PATH: /tmp/memcached.conf
       MEMCACHED_SASL_PWDB: /tmp/memcached-sasl-db
       MEMCACHED_PASSWORD: ${MEMCACHED_PASSWORD:?memcached password required}
-    networks:
-      - zulip-db
+    # networks:
+    #   - zulip-db
     cap_drop:
       - ALL
     security_opt:
@@ -176,8 +176,8 @@ services:
       HOME: /var/lib/rabbitmq
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq
-    networks:
-      - zulip-db
+    # networks:
+    #   - zulip-db
     cap_drop:
       - ALL
     security_opt:
@@ -220,8 +220,8 @@ services:
       REDIS_PASSWORD: ${REDIS_PASSWORD:?redis password required}
     volumes:
       - ./data/redis:/data
-    networks:
-      - zulip-db
+    # networks:
+    #   - zulip-db
     cap_drop:
       - ALL
     security_opt:
@@ -313,9 +313,9 @@ services:
       nofile:
         soft: 1000000
         hard: 1048576
-    networks:
-      - zulip-front
-      - zulip-db
+    # networks:
+    #   - zulip-front
+    #   - zulip-db
     cap_drop:
       - ALL
     cap_add:
@@ -360,13 +360,13 @@ services:
 # NETWORKS
 # ═══════════════════════════════════════════════════════════════════════════
 
-networks:
-  # External-facing: reverse proxy reaches Zulip here; also gives the
-  # server internet egress for outbound SMTP, mobile push notifications,
-  # GitHub/webhook integrations, etc.
-  zulip-front:
-    external: true
-  # Internal: postgres / memcached / rabbitmq / redis + Zulip's backend
-  # chatter. No host port, no internet egress.
-  zulip-db:
-    external: true
+# networks:
+#   # External-facing: reverse proxy reaches Zulip here; also gives the
+#   # server internet egress for outbound SMTP, mobile push notifications,
+#   # GitHub/webhook integrations, etc.
+#   zulip-front:
+#     external: true
+#   # Internal: postgres / memcached / rabbitmq / redis + Zulip's backend
+#   # chatter. No host port, no internet egress.
+#   zulip-db:
+#     external: true
